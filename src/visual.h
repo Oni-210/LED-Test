@@ -4,7 +4,7 @@
 
 class Visual {
     public:
-        Visual(Matrix* matrix) : matrix(matrix) {};
+        Visual(Matrix* matrix) : matrix(matrix) {}
         virtual void run() =0;
     private:
         Matrix* matrix;
