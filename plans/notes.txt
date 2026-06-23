@@ -1,5 +1,4 @@
 additional expressions:
-- Disgust
 - x eyes
 - disco
 - annoyed
