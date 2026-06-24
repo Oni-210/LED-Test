@@ -1,17 +1,17 @@
 # Features
 ## Expressions
-- Neutral
-- Happy
-- Sad
-- Annoyed (Angry)
-- Wink
-- "Fuck off"
-- Error
-- Social Battery
-- X eyes
-- Confused
-- DISCO
-- Shy
+- Neutral X
+- Happy X
+- Sad X
+- Annoyed (Angry) X
+- Wink X
+- "Fuck off" X
+- Error X
+- Social Battery X
+- X eyes X
+- Confused X
+- DISCO X
+- Shy X
 ## Other Visuals
 - Blinking
 - Moving mouth
