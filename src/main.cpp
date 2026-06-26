@@ -17,3 +17,19 @@ const uint8_t kScrollingLayerOptions = (SM_SCROLLING_OPTIONS_NONE);
 const uint8_t kIndexedLayerOptions = (SM_INDEXED_OPTIONS_NONE);
 SMARTMATRIX_ALLOCATE_BUFFERS(matrix, kMatrixWidth, kMatrixHeight, kRefreshDepth, kDmaBufferRows, kPanelType, kMatrixOptions);
 SMARTMATRIX_ALLOCATE_BACKGROUND_LAYER(backgroundLayer, kMatrixWidth, kMatrixHeight, COLOR_DEPTH, kBackgroundLayerOptions);
+
+#include "visuals.h"
+
+Expression expression = Expression::NEUTRAL;
+TempExpression temp_expression = TempExpression::NONE;
+
+void setup() {
+    matrix.addLayer(&backgroundLayer);
+    matrix.begin();
+}
+
+void loop() {
+    if (temp_expression == TempExpression::NONE) {
+        if (Visuals.expressions[expression].is_full_screen) {}
+    }
+}
