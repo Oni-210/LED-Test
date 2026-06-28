@@ -1,12 +1,12 @@
 #pragma once
 #include "visuals.h"
-
 #include <SPI.h>
 #include <SD.h>
 
-class FCPlayer: Visual {
+class FCPlayer: public Visual {
     public:
         FCPlayer(char* filepath);
+        ~FCPlayer();
         std::unique_ptr<Color[]> run() override;
     private:
         File file;

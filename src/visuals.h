@@ -2,6 +2,9 @@
 #include <Arduino.h>
 #include <memory>
 
+const int MATRIX_WIDTH = 128;
+const int MATRIX_HEIGHT = 32;
+
 struct Color {
     byte red;
     byte green;
@@ -39,10 +42,5 @@ enum class Palette {
 class Visual {
     public:
         virtual std::unique_ptr<Color[]> run() =0;
-};
-
-class VisualTools {
-    public:
-        static Visual* getExpression(Expression expression);
-        static Visual* getExpression(TempExpression expression);
+        virtual ~Visual() = default;
 };

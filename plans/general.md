@@ -4,13 +4,13 @@
 - Happy X
 - Sad X
 - Annoyed (Angry) X
-- Wink X
+- Wink 
 - "Fuck off" X
 - Error X
-- Social Battery X
+- Social Battery 
 - X eyes X
 - Confused X
-- DISCO X
+- DISCO 
 - Shy X
 ## Other Visuals
 - Blinking
