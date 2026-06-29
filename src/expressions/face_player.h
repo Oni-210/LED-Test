@@ -17,9 +17,9 @@ const float SOUND_LEVELS[7] = {
 };
 
 // GUItool: begin automatically generated code
-AudioInputI2S            i2s;           //xy=303,297
-AudioAnalyzeRMS          rms;           //xy=523,251
-AudioConnection          patchCord1(i2s, 0, rms, 0);
+extern AudioInputI2S            i2s;           //xy=303,297
+extern AudioAnalyzeRMS          rms;           //xy=523,251
+extern AudioConnection          patchCord1;
 // GUItool: end automatically generated code
 
 class FacePlayer : public Visual {

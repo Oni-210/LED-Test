@@ -1,5 +1,11 @@
 #include "face_player.h"
 
+// GUItool: begin automatically generated code
+AudioInputI2S            i2s;           //xy=303,297
+AudioAnalyzeRMS          rms;           //xy=523,251
+AudioConnection          patchCord1(i2s, 0, rms, 0);
+// GUItool: end automatically generated code
+
 FacePlayer::FacePlayer(char* eye_path, char* mouth_path, char* talking_path) {
     SD.begin(BUILTIN_SDCARD);
     eye_file = SD.open(eye_path, FILE_READ);
