@@ -18,12 +18,17 @@ std::unique_ptr<Color[]> FCPlayer::run() {
 
     auto frame = std::make_unique<Color[]>(MATRIX_WIDTH * MATRIX_HEIGHT);
     file.seek(current_frame * MATRIX_WIDTH * MATRIX_HEIGHT * 3);
-    for (int i; i < MATRIX_WIDTH * MATRIX_HEIGHT; ++i) {
+    for (int i = 0; i < MATRIX_WIDTH * MATRIX_HEIGHT; ++i) {
         frame[i].red = file.read();
         frame[i].green = file.read();
         frame[i].blue = file.read();
     };
 
-    ++current_frame;
+    if (current_frame >= frame_count) {
+        current_frame = 0;
+    } else {
+        ++current_frame;
+    }
+    
     return frame;
 }

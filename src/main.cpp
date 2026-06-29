@@ -28,8 +28,4 @@ void setup() {
     matrix.begin();
 }
 
-void loop() {
-    if (temp_expression == TempExpression::NONE) {
-        if (Visuals.expressions[expression].is_full_screen) {}
-    }
-}
+void loop() {}

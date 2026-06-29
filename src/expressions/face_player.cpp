@@ -2,9 +2,11 @@
 
 FacePlayer::FacePlayer(char* eye_path, char* mouth_path, char* talking_path) {
     SD.begin(BUILTIN_SDCARD);
-    eye_file = SD.open(eye_path);
-    mouth_file = SD.open(mouth_path);
-    talking_file = SD.open(talking_path);
+    eye_file = SD.open(eye_path, FILE_READ);
+    mouth_file = SD.open(mouth_path, FILE_READ);
+    talking_file = SD.open(talking_path, FILE_READ);
+
+    frame_count = eye_file.size() / (MATRIX_WIDTH * MATRIX_HEIGHT * 3) - 1;
 }
 
 FacePlayer::~FacePlayer() {
@@ -29,7 +31,7 @@ std::unique_ptr<Color[]> FacePlayer::run() {
     auto frame = std::make_unique<Color[]>(MATRIX_WIDTH * MATRIX_HEIGHT);
     File* current_mouth;
 
-    if (sound_level = 0) {
+    if (sound_level == 0) {
         current_mouth = &mouth_file;
          mouth_file.seek(MATRIX_WIDTH * MATRIX_HEIGHT * 3 * current_frame);
     } else {
@@ -43,4 +45,12 @@ std::unique_ptr<Color[]> FacePlayer::run() {
         frame[i].green = max(eye_file.read(), current_mouth -> read());
         frame[i].blue = max(eye_file.read(), current_mouth -> read());
     }
+
+    if (current_frame >= frame_count) {
+        current_frame = 0;
+    } else {
+        ++current_frame;
+    }
+
+    return frame;
 }

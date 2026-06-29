@@ -31,5 +31,6 @@ class FacePlayer : public Visual {
         File eye_file;
         File mouth_file;
         File talking_file;
-        int current_frame = 0;
+        unsigned int current_frame = 0;
+        unsigned int frame_count;
 };
