@@ -1,6 +1,6 @@
 #pragma once
 #include "visuals.h"
-#include "expressions/fc_player.h"
+#include "expressions/fs_player.h"
 #include "expressions/face_player.h"
 #include <memory>
 

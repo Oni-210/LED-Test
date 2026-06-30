@@ -1,17 +1,17 @@
-#include "fc_player.h"
+#include "fs_player.h"
 
-FCPlayer::FCPlayer(char* filepath) {
+FSPlayer::FSPlayer(char* filepath) {
     SD.begin(BUILTIN_SDCARD);
     file = SD.open(filepath, FILE_READ);
 
     frame_count = (file.size() / (MATRIX_WIDTH * MATRIX_HEIGHT)) - 1;
 }
 
-FCPlayer::~FCPlayer() {
+FSPlayer::~FSPlayer() {
     file.close();
 }
 
-std::unique_ptr<Color[]> FCPlayer::run() {
+std::unique_ptr<Color[]> FSPlayer::run() {
     if (current_frame >= frame_count) {
         current_frame = 0;
     }
