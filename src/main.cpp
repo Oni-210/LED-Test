@@ -28,4 +28,6 @@ void setup() {
     matrix.begin();
 }
 
-void loop() {}
+void loop() {
+    // TODO: Add functionality
+}
