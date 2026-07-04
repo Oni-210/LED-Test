@@ -17,7 +17,7 @@ FacePlayer::FacePlayer(char* eye_path, char* mouth_path, char* talking_path) {
     AudioMemory(12);
 }
 
-FacePlayer::PacePlayer(char eye_path, char* mouth_path, char* talking_path, char* blink_path) {
+FacePlayer::FacePlayer(char* eye_path, char* mouth_path, char* talking_path, char* blink_path) {
     SD.begin(BUILTIN_SDCARD);
     eye_file = SD.open(eye_path, FILE_READ);
     mouth_file = SD.open(mouth_path, FILE_READ);
@@ -27,7 +27,7 @@ FacePlayer::PacePlayer(char eye_path, char* mouth_path, char* talking_path, char
     frame_count = eye_file.size() / (MATRIX_WIDTH * MATRIX_HEIGHT * 3) - 1;
     blink_frame_count = blink_file.size() / (MATRIX_WIDTH * MATRIX_HEIGHT * 3) - 1;
     is_blink = true;
-    blink_gap = rand(BLINK_GAP_MIN, BLINK_GAP_MAX);
+    blink_gap = rand() % (BLINK_GAP_MAX - BLINK_GAP_MIN + 1) + BLINK_GAP_MIN;
     AudioMemory(12);
 }
 
@@ -60,7 +60,7 @@ std::unique_ptr<Color[]> FacePlayer::run() {
     }
     
     if (is_blink && since_last_blink >= blink_gap) {
-        blink_gap = rand(BLINK_GAP_MIN, BLINK_GAP_MAX);
+        blink_gap = rand() % (BLINK_GAP_MAX - BLINK_GAP_MIN + 1) + BLINK_GAP_MIN;
         currently_blinking = true;
         current_blink_frame = 0;
     }
@@ -68,10 +68,10 @@ std::unique_ptr<Color[]> FacePlayer::run() {
     File* current_eye;
     
     if (currently_blinking) {
-        current_eye = blink_file;
+        current_eye = &blink_file;
         blink_file.seek(current_blink_frame);
     } else {
-        current_eye = eye_file;
+        current_eye = &eye_file;
         eye_file.seek(current_frame);
     } 
     
