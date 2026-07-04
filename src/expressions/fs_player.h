@@ -3,10 +3,10 @@
 #include <SPI.h>
 #include <SD.h>
 
-class FCPlayer: public Visual {
+class FSPlayer: public Visual {
     public:
-        FCPlayer(char* filepath);
-        ~FCPlayer();
+        FSPlayer(char* filepath);
+        ~FSPlayer();
         std::unique_ptr<Color[]> run() override;
     private:
         File file;

@@ -11,9 +11,9 @@ std::unique_ptr<Visual> VisualTools::getExpression(Expression expression) {
         case Expression::ANNOYED:
             return std::make_unique<FacePlayer>("annoyed/eyes.bin", "annoyed/mouth.bin", "default/talking.bin");
         case Expression::INSULT:
-            return std::make_unique<FCPlayer>("fc/insult.bin");
+            return std::make_unique<FSPlayer>("fc/insult.bin");
         case Expression::ERROR:
-            return std::make_unique<FCPlayer>("fc/error.bin");
+            return std::make_unique<FSPlayer>("fc/error.bin");
         case Expression::DEAD:
             return std::make_unique<FacePlayer>("dead/eyes.bin", "dead/mouth.bin", "default/talking.bin");
         case Expression::CONFUSED:
