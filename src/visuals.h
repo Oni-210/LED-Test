@@ -26,8 +26,7 @@ enum class Expression {
 
 enum class TempExpression {
 	WINK,
-    BLINK,
-	SOCIAL_BATTERY,
+	BATTERY,
     NONE
 };
 

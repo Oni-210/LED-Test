@@ -2,12 +2,14 @@
 #include "visuals.h"
 #include <SPI.h>
 #include <SD.h>
+#include <memory>
 
-class FSPlayer: public Visual {
+class FSTempPlayer : public Visual{
     public:
-        FSPlayer(char* filepath);
-        ~FSPlayer();
+        FSTempPlayer(char* filepath);
+        ~FSTempPlayer();
         std::unique_ptr<Color[]> run() override;
+
     private:
         File file;
         unsigned int current_frame = 0;

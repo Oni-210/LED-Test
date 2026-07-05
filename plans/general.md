@@ -1,20 +1,20 @@
 # Features
 ## Expressions
 - Neutral X
-- Happy X
+- Happy X 
 - Sad X
 - Annoyed (Angry) X
 - Wink 
 - "Fuck off" X
-- Error X
+- Error X 
 - Social Battery 
 - X eyes X
 - Confused X
 - DISCO 
 - Shy X
 ## Other Visuals
-- Blinking
-- Moving mouth
-- Small glitches
+- Blinking X
+- Moving mouth X
+- Small glitches X
 ## Other
 - Voice changer

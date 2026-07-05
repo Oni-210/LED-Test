@@ -35,6 +35,10 @@ FacePlayer::~FacePlayer() {
     eye_file.close();
     mouth_file.close();
     talking_file.close();
+
+    if (is_blink) {
+        blink_file.close();
+    }
 }
 
 std::unique_ptr<Color[]> FacePlayer::run() {
