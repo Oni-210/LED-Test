@@ -6,7 +6,6 @@ FaceTempPlayer::FaceTempPlayer(char* eye_path, char* mouth_path, char* talking_p
     mouth_file = SD.open(mouth_path, FILE_READ);
     talking_file = SD.open(talking_path, FILE_READ);
 
-    sound_level = &new_sound_level;
     frame_count = eye_file.size() / (MATRIX_WIDTH * MATRIX_HEIGHT * 3) - 1;
 }
 

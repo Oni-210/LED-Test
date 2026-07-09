@@ -32,6 +32,7 @@ std::unique_ptr<Visual> VisualTools::getExpression(Expression expression) {
         default:
             return nullptr;
     }
+    return nullptr;
 }
 
 std::unique_ptr<Visual> VisualTools::getExpression(TempExpression expression) {
@@ -54,7 +55,14 @@ std::unique_ptr<Visual> VisualTools::getExpression(TempExpression expression) {
                     return nullptr;
             }
         
-            case TempExpression::WINK:
-                return std::make_unique<FaceTempPlayer>("other/wink_eye.bin", "happy/mouth.bin", "default/talking.bin", sound_level);
+        case TempExpression::WINK:
+            return std::make_unique<FaceTempPlayer>("other/wink_eye.bin", "happy/mouth.bin", "default/talking.bin", sound_level);
+
+        case TempExpression::NONE:
+            return nullptr;
+
+        default:
+            return nullptr;
     }
+    return nullptr;
 }

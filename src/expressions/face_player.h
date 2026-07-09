@@ -5,8 +5,8 @@
 
 class FacePlayer : public Visual {
     public:
-        FacePlayer(char* eye_path, char* mouth_path, char* talking_path, int& new_sound_level);
-        FacePlayer(char* eye_path, char* mouth_path, char* talking_path, char* blink_path, int& new_sound_level);
+        FacePlayer(char* eye_path, char* mouth_path, char* talking_path, int& new_sound_level) : sound_level(&new_sound_level), is_blink(false) {};
+        FacePlayer(char* eye_path, char* mouth_path, char* talking_path, char* blink_path, int& new_sound_level) : sound_level(&new_sound_level), is_blink(true) {};
         ~FacePlayer();
         std::unique_ptr<Color[]> run() override;
     private:

@@ -9,9 +9,7 @@ FacePlayer::FacePlayer(char* eye_path, char* mouth_path, char* talking_path, int
     mouth_file = SD.open(mouth_path, FILE_READ);
     talking_file = SD.open(talking_path, FILE_READ);
 
-    sound_level = &new_sound_level;
     frame_count = eye_file.size() / (MATRIX_WIDTH * MATRIX_HEIGHT * 3) - 1;
-    is_blink = false;
 }
 
 FacePlayer::FacePlayer(char* eye_path, char* mouth_path, char* talking_path, char* blink_path, int& new_sound_level) {
@@ -21,10 +19,8 @@ FacePlayer::FacePlayer(char* eye_path, char* mouth_path, char* talking_path, cha
     talking_file = SD.open(talking_path, FILE_READ);
     blink_file = SD.open(blink_path, FILE_READ);
 
-    sound_level = &new_sound_level;
     frame_count = eye_file.size() / (MATRIX_WIDTH * MATRIX_HEIGHT * 3) - 1;
     blink_frame_count = blink_file.size() / (MATRIX_WIDTH * MATRIX_HEIGHT * 3) - 1;
-    is_blink = true;
     blink_gap = rand() % (BLINK_GAP_MAX - BLINK_GAP_MIN + 1) + BLINK_GAP_MIN;
 }
 
