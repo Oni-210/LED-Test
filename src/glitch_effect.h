@@ -2,5 +2,5 @@
 
 class GlitchEffect {
     public:
-        void run(std::unique_ptr<Color[]> frame);
+        static void run(std::unique_ptr<Color[]> frame);
 };

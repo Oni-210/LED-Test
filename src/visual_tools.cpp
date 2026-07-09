@@ -3,16 +3,16 @@
 std::unique_ptr<Visual> VisualTools::getExpression(Expression expression) {
     switch (expression) {
         case Expression::NEUTRAL:
-            return std::make_unique<FacePlayer>("neutral/eyes.bin", "neutral/mouth.bin", "default/talking.bin");
+            return std::make_unique<FacePlayer>("neutral/eyes.bin", "neutral/mouth.bin", "default/talking.bin", sound_level);
 
         case Expression::HAPPY:
-            return std::make_unique<FacePlayer>("happy/eyes.bin", "happy/mouth.bin", "default/talking.bin");
+            return std::make_unique<FacePlayer>("happy/eyes.bin", "happy/mouth.bin", "default/talking.bin", sound_level);
 
         case Expression::SAD:
-            return std::make_unique<FacePlayer>("sad/eyes.bin", "sad/mouth.bin", "default/talking.bin");
+            return std::make_unique<FacePlayer>("sad/eyes.bin", "sad/mouth.bin", "default/talking.bin", sound_level);
 
         case Expression::ANNOYED:
-            return std::make_unique<FacePlayer>("annoyed/eyes.bin", "annoyed/mouth.bin", "default/talking.bin");
+            return std::make_unique<FacePlayer>("annoyed/eyes.bin", "annoyed/mouth.bin", "default/talking.bin", sound_level);
 
         case Expression::INSULT:
             return std::make_unique<FSPlayer>("fc/insult.bin");
@@ -21,13 +21,13 @@ std::unique_ptr<Visual> VisualTools::getExpression(Expression expression) {
             return std::make_unique<FSPlayer>("fc/error.bin");
 
         case Expression::DEAD:
-            return std::make_unique<FacePlayer>("dead/eyes.bin", "dead/mouth.bin", "default/talking.bin");
+            return std::make_unique<FacePlayer>("dead/eyes.bin", "dead/mouth.bin", "default/talking.bin", sound_level);
 
         case Expression::CONFUSED:
-            return std::make_unique<FacePlayer>("confused/eyes.bin", "confused/mouth.bin", "default/talking.bin");
+            return std::make_unique<FacePlayer>("confused/eyes.bin", "confused/mouth.bin", "default/talking.bin", sound_level);
 
         case Expression::SHY:
-            return std::make_unique<FacePlayer>("shy/eyes.bin", "shy/mouth.bin", "default/talking.bin");
+            return std::make_unique<FacePlayer>("shy/eyes.bin", "shy/mouth.bin", "default/talking.bin", sound_level);
 
         default:
             return nullptr;
@@ -55,6 +55,6 @@ std::unique_ptr<Visual> VisualTools::getExpression(TempExpression expression) {
             }
         
             case TempExpression::WINK:
-                return std::make_unique<FaceTempPlayer>("other/wink_eye.bin", "happy/mouth.bin", "default/talking.bin");
+                return std::make_unique<FaceTempPlayer>("other/wink_eye.bin", "happy/mouth.bin", "default/talking.bin", sound_level);
     }
 }
