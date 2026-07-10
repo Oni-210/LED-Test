@@ -18,10 +18,10 @@ std::unique_ptr<Color[]> FSTempPlayer::run() {
 
     auto frame = std::make_unique<Color[]>(MATRIX_WIDTH * MATRIX_HEIGHT);
     file.seek(current_frame * MATRIX_WIDTH * MATRIX_HEIGHT * 3);
-    for (int i = 0; i < MATRIX_WIDTH * MATRIX_HEIGHT; ++i) {
-        frame[i].red = file.read();
-        frame[i].green = file.read();
-        frame[i].blue = file.read();
+    for (int pixel = 0; pixel < MATRIX_WIDTH * MATRIX_HEIGHT; ++pixel) {
+        frame[pixel].red = file.read();
+        frame[pixel].green = file.read();
+        frame[pixel].blue = file.read();
     };
 
     if (current_frame >= frame_count) {

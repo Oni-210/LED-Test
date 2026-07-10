@@ -64,10 +64,10 @@ std::unique_ptr<Color[]> FacePlayer::run() {
     
     eye_file.seek(MATRIX_WIDTH * MATRIX_HEIGHT * 3 * current_frame);
 
-    for (int i = 0; i <  MATRIX_WIDTH * MATRIX_HEIGHT; ++i) {
-        frame[i].red = max(current_eye -> read(), current_mouth -> read());
-        frame[i].green = max(current_eye -> read(), current_mouth -> read());
-        frame[i].blue = max(current_eye -> read(), current_mouth -> read());
+    for (int pixel = 0; pixel <  MATRIX_WIDTH * MATRIX_HEIGHT; ++pixel) {
+        frame[pixel].red = max(current_eye -> read(), current_mouth -> read());
+        frame[pixel].green = max(current_eye -> read(), current_mouth -> read());
+        frame[pixel].blue = max(current_eye -> read(), current_mouth -> read());
     }
 
     if (current_frame >= frame_count) {
