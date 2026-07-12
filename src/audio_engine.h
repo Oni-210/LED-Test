@@ -22,13 +22,15 @@ class AudioEngine {
     public:
         AudioEngine();
         void run();
-        int getSoundLevel();
         void setVolume(float volume);
-        void setBeatsyncCB(std::function<void(bool is_low_beat, bool is_mid_beat, bool is_high_beat, int avg_volume)>);
+        void setBeatsyncCB(std::function<void()> low_cb, std::function<void()> mid_cb, std::function<void()> high_cb);
 
         int sound_level;
-
+        float avg_volume = 0;
+        bool is_beatsync = false;
     private:
-        float current_rms;
-        float fft_bands[NUM_BANDS];
+        float last_fft_bands[NUM_BANDS];
+        std::function<void()> low_cb;
+        std::function<void()> mid_cb;
+        std::function<void()> high_cb;
 };

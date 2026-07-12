@@ -3,12 +3,12 @@
 // GUItool: begin automatically generated code
 AudioInputI2S            i2s;           //xy=387,195
 AudioEffectBitcrusher    bitcrusher;    //xy=612,229
-AudioAnalyzeRMS          rms;           //xy=614,155
+AudioAnalyzePeak         peak;          //xy=614,155
 AudioAnalyzeFFT256       fft256;       //xy=618,332
 AudioAmplifier           amp;           //xy=838,262
 AudioOutputI2S2          i2s2;         //xy=1064,305
 AudioConnection          patchCord1(i2s, 0, bitcrusher, 0);
-AudioConnection          patchCord2(i2s, 0, rms, 0);
+AudioConnection          patchCord2(i2s, 0, peak, 0);
 AudioConnection          patchCord3(i2s, 1, fft256, 0);
 AudioConnection          patchCord4(bitcrusher, amp);
 AudioConnection          patchCord5(amp, 0, i2s2, 0);
@@ -39,6 +39,30 @@ const int BAND_LIMITS[NUM_BANDS + 1] = {
     270,
     256,
 };
+const int LOW_BAND_WEIGTHS[NUM_BANDS] = {
+    0.5,
+    0.7,
+    0.2,
+    0.0,
+    0.0,
+    0.0,
+};
+const int MID_BAND_WEIGTHS[NUM_BANDS] = {
+    0.0,
+    0.2,
+    0.5,
+    0.5,
+    0.2,
+    0.0,
+};
+const int HIGH_BAND_WEIGTHS[NUM_BANDS] = {
+    0.0,
+    0.0,
+    0.0,
+    0.2,
+    0.7,
+    0.5,
+};
 
 AudioEngine::AudioEngine() {
     AudioMemory(12);
@@ -49,32 +73,54 @@ AudioEngine::AudioEngine() {
 }
 
 void AudioEngine::run() {
-    sound_level = getSoundLevel();
+    if (!fft256.available()) return;
 
-    if (fft256.available()) {
-        for (int band = 0; band < NUM_BANDS; ++band) {
-            fft_bands[band] = fft256.read(BAND_LIMITS[band], BAND_LIMITS[band + 1]);
+    float current_peak = peak.read();
+    for (int level = 0; level < sizeof(SOUND_LEVELS); ++level) {
+        if (current_peak < SOUND_LEVELS[level]) {
+            sound_level = level;
         }
     }
+    sound_level = sizeof(SOUND_LEVELS);
 
-    float avg_volume = 0;
+    if (!is_beatsync) return;
+
+    float fft_bands[NUM_BANDS];
+    for (int band = 0; band < NUM_BANDS; ++band) {
+        fft_bands[band] = fft256.read(BAND_LIMITS[band], BAND_LIMITS[band + 1]);
+    }
+
+    float fft_deltas[NUM_BANDS];
+    for (int band = 0; band < NUM_BANDS; ++band) {
+        fft_deltas[band] = fft_bands[band] - last_fft_bands[band];
+    }
+
+    float low_beat_prob = 0;
+    for (int band; band < NUM_BANDS; ++band) {
+        low_beat_prob += fft_deltas[band] * LOW_BAND_WEIGTHS[band];
+    }
+    if (low_beat_prob >= 1) low_cb();
+
+    float mid_beat_prob = 0;
+    for (int band; band < NUM_BANDS; ++band) {
+        mid_beat_prob += fft_deltas[band] * MID_BAND_WEIGTHS[band];
+    }
+    if (mid_beat_prob >= 1) high_cb();
+
+    float high_beat_prob = 0;
+    for (int band; band < NUM_BANDS; ++band) {
+        high_beat_prob += fft_deltas[band] * HIGH_BAND_WEIGTHS[band];
+    }
+    if (high_beat_prob >= 1) high_cb();
+
     for (float band_value : fft_bands) {
         avg_volume += band_value;
     }
     avg_volume /= NUM_BANDS;
-}
 
-int AudioEngine::getSoundLevel() {
-    if (rms.available()) {
-        current_rms = rms.read();
+    for (int i = 0; i < NUM_BANDS; ++i) {
+        last_fft_bands[i] = fft_bands[i];
     }
-
-    for (int level = 0; level < sizeof(SOUND_LEVELS); ++level) {
-        if (current_rms < SOUND_LEVELS[level]) {
-            return level;
-        }
-    }
-    return sizeof(SOUND_LEVELS);
 }
 
 void AudioEngine::setVolume(float volume) {
