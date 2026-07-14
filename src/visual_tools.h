@@ -4,11 +4,12 @@
 #include "expressions/face_player.h"
 #include "expressions/fs_temp_player.h"
 #include "expressions/face_temp_player.h"
+#include "expressions/beatsync.h"
 #include <memory>
 
 class VisualTools {
     public:
-        VisualTools(int& sound_level) : sound_level(sound_level) {};
+        VisualTools(int& sound_level, float& avg_volume) : sound_level(sound_level), avg_volume(avg_volume) {};
         std::unique_ptr<Visual> getExpression(Expression expression);
         std::unique_ptr<Visual> getExpression(TempExpression expression);
         Palette getPalette(Expression expression);
@@ -20,4 +21,5 @@ class VisualTools {
 
     private:
         int& sound_level;
+        float& avg_volume;
     };

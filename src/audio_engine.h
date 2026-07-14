@@ -20,10 +20,9 @@ extern const int NUM_BANDS;
 
 class AudioEngine {
     public:
-        AudioEngine();
+        AudioEngine(std::function<void()> low_cb, std::function<void()> mid_cb, std::function<void()> high_cb) : low_cb(low_cb), mid_cb(mid_cb), high_cb(high_cb) {};
         void run();
         void setVolume(float volume);
-        void setBeatsyncCB(std::function<void()> low_cb, std::function<void()> mid_cb, std::function<void()> high_cb);
 
         int sound_level;
         float avg_volume = 0;

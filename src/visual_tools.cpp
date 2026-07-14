@@ -29,6 +29,9 @@ std::unique_ptr<Visual> VisualTools::getExpression(Expression expression) {
         case Expression::SHY:
             return std::make_unique<FacePlayer>("shy/eyes.bin", "shy/mouth.bin", "default/talking.bin", sound_level);
 
+        case Expression::BEATSYNC:
+            return std::make_unique<Beatsync>(avg_volume);
+
         default:
             return nullptr;
     }

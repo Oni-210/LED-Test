@@ -6,9 +6,7 @@ const int MATRIX_WIDTH = 128;
 const int MATRIX_HEIGHT = 32;
 
 struct Color {
-    byte red;
-    byte green;
-    byte blue;
+    byte red, green, blue;
 };
 
 enum class Expression {

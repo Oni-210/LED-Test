@@ -64,7 +64,7 @@ const int HIGH_BAND_WEIGTHS[NUM_BANDS] = {
     0.5,
 };
 
-AudioEngine::AudioEngine() {
+AudioEngine::AudioEngine(std::function<void()> low_cb, std::function<void()> mid_cb, std::function<void()> high_cb) {
     AudioMemory(12);
     bitcrusher.sampleRate(SAMPLE_RATE);
     bitcrusher.bits(BITDEPTH);
