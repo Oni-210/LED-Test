@@ -16,11 +16,16 @@ BEATSYNC TYPES:
 - avg_volume
 */
 
-extern const int NUM_BANDS;
+extern int NUM_BANDS;
 
 class AudioEngine {
     public:
-        AudioEngine(std::function<void()> low_cb, std::function<void()> mid_cb, std::function<void()> high_cb) : low_cb(low_cb), mid_cb(mid_cb), high_cb(high_cb) {};
+        AudioEngine(
+            std::function<void()> low_cb, 
+            std::function<void()> mid_cb, 
+            std::function<void()> high_cb) : 
+            low_cb(low_cb), mid_cb(mid_cb), high_cb(high_cb) {};
+
         void run();
         void setVolume(float volume);
 

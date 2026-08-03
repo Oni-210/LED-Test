@@ -4,3 +4,12 @@ additional expressions:
 - annoyed
 - shy
 - confused
+
+
+
+
+gestures:
+- Swipe (lrud)
+- Circle
+- Short tap
+- long tap
