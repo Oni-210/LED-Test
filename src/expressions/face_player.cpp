@@ -3,7 +3,8 @@
 const unsigned int BLINK_GAP_MAX = 3000;
 const unsigned int BLINK_GAP_MIN = 500;
 
-FacePlayer::FacePlayer(char* eye_path, char* mouth_path, char* talking_path, int& new_sound_level) {
+FacePlayer::FacePlayer(char* eye_path, char* mouth_path, char* talking_path, int& new_sound_level) 
+    : is_blink(false), sound_level(&new_sound_level) {
     SD.begin(BUILTIN_SDCARD);
     eye_file = SD.open(eye_path, FILE_READ);
     mouth_file = SD.open(mouth_path, FILE_READ);
@@ -12,7 +13,8 @@ FacePlayer::FacePlayer(char* eye_path, char* mouth_path, char* talking_path, int
     frame_count = eye_file.size() / (MATRIX_WIDTH * MATRIX_HEIGHT * 3) - 1;
 }
 
-FacePlayer::FacePlayer(char* eye_path, char* mouth_path, char* talking_path, char* blink_path, int& new_sound_level) {
+FacePlayer::FacePlayer(char* eye_path, char* mouth_path, char* talking_path, char* blink_path, int& new_sound_level) 
+    : is_blink(true), sound_level(&new_sound_level) {
     SD.begin(BUILTIN_SDCARD);
     eye_file = SD.open(eye_path, FILE_READ);
     mouth_file = SD.open(mouth_path, FILE_READ);

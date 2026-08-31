@@ -29,7 +29,7 @@ const float SOUND_LEVELS[7] = {
 };
 
 const int AVERAGE_TOGETHER = 24;
-const int NUM_BANDS = 6;
+//NUM_BANDS defined in audio_engine.h
 const int BAND_LIMITS[NUM_BANDS + 1] = {
     0,
     64,
@@ -64,7 +64,8 @@ const int HIGH_BAND_WEIGTHS[NUM_BANDS] = {
     0.5,
 };
 
-AudioEngine::AudioEngine(std::function<void()> low_cb, std::function<void()> mid_cb, std::function<void()> high_cb) {
+AudioEngine::AudioEngine(std::function<void()> low_cb, std::function<void()> mid_cb, std::function<void()> high_cb) 
+    : low_cb(low_cb), mid_cb(mid_cb), high_cb(high_cb) {
     AudioMemory(12);
     bitcrusher.sampleRate(SAMPLE_RATE);
     bitcrusher.bits(BITDEPTH);

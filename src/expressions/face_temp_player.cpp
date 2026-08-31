@@ -1,6 +1,7 @@
 #include "face_temp_player.h"
 
-FaceTempPlayer::FaceTempPlayer(char* eye_path, char* mouth_path, char* talking_path, int& new_sound_level) {
+FaceTempPlayer::FaceTempPlayer(char* eye_path, char* mouth_path, char* talking_path, int& new_sound_level) 
+    : sound_level(&new_sound_level) {
     SD.begin(BUILTIN_SDCARD);
     eye_file = SD.open(eye_path, FILE_READ);
     mouth_file = SD.open(mouth_path, FILE_READ);

@@ -50,9 +50,9 @@ std::unique_ptr<Color[]> Beatsync::run() {
 
 
     Color current_shade;
-    current_shade.red = COLORS[current_color].red * current_color_fraction + COLORS[current_color = 0 ? sizeof(COLORS) : current_color - 1].red * (1 - current_color_fraction);
-    current_shade.green = COLORS[current_color].green * current_color_fraction + COLORS[current_color = 0 ? sizeof(COLORS) : current_color - 1].green * (1 - current_color_fraction);
-    current_shade.blue = COLORS[current_color].blue * current_color_fraction + COLORS[current_color = 0 ? sizeof(COLORS) : current_color - 1].blue * (1 - current_color_fraction);
+    current_shade.red = COLORS[current_color].red * current_color_fraction + COLORS[current_color == 0 ? sizeof(COLORS) : current_color - 1].red * (1 - current_color_fraction);
+    current_shade.green = COLORS[current_color].green * current_color_fraction + COLORS[current_color == 0 ? sizeof(COLORS) : current_color - 1].green * (1 - current_color_fraction);
+    current_shade.blue = COLORS[current_color].blue * current_color_fraction + COLORS[current_color == 0 ? sizeof(COLORS) : current_color - 1].blue * (1 - current_color_fraction);
     auto frame = std::make_unique<Color[]>(MATRIX_WIDTH * MATRIX_HEIGHT);
 
     eye_file.seek(0);

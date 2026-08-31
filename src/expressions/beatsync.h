@@ -4,7 +4,7 @@
 
 class Beatsync : public Visual {
     public:
-        Beatsync(float& avg_volume) : avg_volume(avg_volume) {};
+        Beatsync(float& avg_volume);
         ~Beatsync();
         std::unique_ptr<Color[]> run() override;
         void lowCB();

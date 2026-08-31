@@ -1,0 +1,5 @@
+{
+    "clangd.arguments": [
+        "[\"--query-driver=/home/DEIN_USER/.platformio/packages/**/bin/*\"]"
+    ]
+}

@@ -9,7 +9,9 @@ const int RING_BORDER = 1200;
 
 PinnacleTouchSPI trackpad(DR_PIN, SS_PIN);
 
-Gestures::Gestures(std::function<void(Direction direction)> swipe_cb, std::function<void(int degrees)> circle_cb, std::function<void(bool is_long)> tap_cb) {
+Gestures::Gestures(std::function<void(Direction direction)> swipe_cb, std::function<void(int degrees)> circle_cb, std::function<void(bool is_long)> tap_cb) : 
+    swipe_cb(swipe_cb), circle_cb(circle_cb), tap_cb(tap_cb) {
+        
     trackpad.begin();
     trackpad.setDataMode(PINNACLE_ABSOLUTE);
     trackpad.absoluteModeConfig(1);
